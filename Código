@@ -1,0 +1,49 @@
+CREATE TABLE Alumnos (
+  id_alumnos INT PRIMARY KEY,
+  Nombre VARCHAR(50),
+  Apellido VARCHAR(50),
+  --Edad INT,
+  Semestre VARCHAR(50)
+);
+
+
+CREATE TABLE Profesores (
+ id_profesores INT PRIMARY KEY,
+  Nombre VARCHAR(50),
+  Apellido VARCHAR(50),
+  Especialidad VARCHAR(50)
+);
+
+
+CREATE TABLE Actividades_culturales (
+  id_actcultural INT PRIMARY KEY,
+ nombre_actividad VARCHAR(50),
+  Descripcion VARCHAR(255),
+  Fecha DATE,
+  Hora TIME,
+  Lugar VARCHAR(50)
+);
+
+
+CREATE TABLE Actividades_deportivas (
+  id_actdeportiva INT PRIMARY KEY,
+  Nombre_actividad VARCHAR(50),
+  Descripcion VARCHAR(255),
+  Fecha DATE,
+  Hora TIME,
+  Lugar VARCHAR(50)
+);
+
+
+CREATE TABLE Registro_actividades (
+  id_registro INT PRIMARY KEY,
+  AlumnoID INT,
+  ProfesorID INT,
+  ActividadID INT,
+  FechaRegistro DATE,
+  FOREIGN KEY (AlumnoID) REFERENCES Alumnos(id_alumno),
+  FOREIGN KEY (ProfesorID) REFERENCES Profesores(id_profesores),
+  FOREIGN KEY (ActividadID) REFERENCES Actividades_culturales(id_actcultural),
+  FOREIGN KEY (ActividadID) REFERENCES Actividades_deportivas(id_actdeportiva)
+);
+SHOW tables;
