@@ -1,49 +1,108 @@
-CREATE TABLE Alumnos (
-  id_alumnos INT PRIMARY KEY,
-  Nombre VARCHAR(50),
-  Apellido VARCHAR(50),
-  --Edad INT,
-  Semestre VARCHAR(50)
-);
+CREATE DATABASE FIBU1;
+USE FIBU1;
 
+CREATE TABLE Alumnos (
+  id_alumnos INT PRIMARY KEY NOT NULL,
+  Nombre VARCHAR(50) NOT NULL,
+  Apellido VARCHAR(50) NOT NULL,
+  Semestre VARCHAR(50) NOT NULL
+);
 
 CREATE TABLE Profesores (
- id_profesores INT PRIMARY KEY,
-  Nombre VARCHAR(50),
-  Apellido VARCHAR(50),
-  Especialidad VARCHAR(50)
+  id_profesores INT PRIMARY KEY NOT NULL,
+  Nombre VARCHAR(50) NOT NULL,
+  Apellido VARCHAR(50) NOT NULL,
+  Especialidad VARCHAR(50) NOT NULL
 );
-
 
 CREATE TABLE Actividades_culturales (
-  id_actcultural INT PRIMARY KEY,
- nombre_actividad VARCHAR(50),
-  Descripcion VARCHAR(255),
-  Fecha DATE,
-  Hora TIME,
-  Lugar VARCHAR(50)
+  id_actcultural INT PRIMARY KEY NOT NULL,
+  nombre_actividad VARCHAR(50) NOT NULL,
+  Descripcion VARCHAR(255) NOT NULL,
+  Lugar VARCHAR(50) NOT NULL
 );
-
 
 CREATE TABLE Actividades_deportivas (
-  id_actdeportiva INT PRIMARY KEY,
-  Nombre_actividad VARCHAR(50),
-  Descripcion VARCHAR(255),
-  Fecha DATE,
-  Hora TIME,
-  Lugar VARCHAR(50)
+  id_actdeportiva INT PRIMARY KEY NOT NULL,
+  Nombre_actividad VARCHAR(50) NOT NULL,
+  Descripcion VARCHAR(255) NOT NULL,
+  Lugar VARCHAR(50) NOT NULL
 );
 
-
 CREATE TABLE Registro_actividades (
-  id_registro INT PRIMARY KEY,
-  AlumnoID INT,
-  ProfesorID INT,
-  ActividadID INT,
-  FechaRegistro DATE,
-  FOREIGN KEY (AlumnoID) REFERENCES Alumnos(id_alumno),
+  id_registro INT PRIMARY KEY NOT NULL,
+  AlumnoID INT NOT NULL,
+  ProfesorID INT NOT NULL,
+  ActividadID INT NOT NULL,
+  FechaRegistro DATE NOT NULL,
+  FOREIGN KEY (AlumnoID) REFERENCES Alumnos(id_alumnos),
   FOREIGN KEY (ProfesorID) REFERENCES Profesores(id_profesores),
   FOREIGN KEY (ActividadID) REFERENCES Actividades_culturales(id_actcultural),
   FOREIGN KEY (ActividadID) REFERENCES Actividades_deportivas(id_actdeportiva)
 );
-SHOW tables;
+
+-- Tabla Alumnos
+INSERT INTO Alumnos (id_alumnos, Nombre, Apellido, Semestre)
+VALUES
+  (01442345, 'Juan', 'Perez', 'Segundo'),
+  (01444321, 'Maria', 'Garcia', 'Segundo'),
+  (01448765, 'Andres', 'Lopez', 'Segundo'),
+  (01447890, 'Laura', 'Rodriguez', 'Segundo'),
+  (01445678, 'Carlos', 'Hernandez', 'Segundo'),
+  (01449012, 'Ana', 'Martinez', 'Segundo'),
+  (01443456, 'David', 'Torres', 'Segundo'),
+  (01448901, 'Sofia', 'Vargas', 'Segundo'),
+  (01446789, 'Gabriela', 'Jimenez', 'Segundo'),
+  (01442109, 'Oscar', 'Sanchez', 'Segundo');
+
+-- Tabla Profesores
+INSERT INTO Profesores (id_profesores, Nombre, Apellido, Especialidad)
+VALUES
+  (00001234, 'Juan', 'Lopez', 'Danza'),
+  (00005678, 'Maria', 'Gonzalez', 'Teatro'),
+  (00009012, 'Andres', 'Hernandez', 'Guitarra'),
+  (00003456, 'Laura', 'Perez', 'Fotografia'),
+  (00007890, 'Carlos', 'Sanchez', 'Danza Folklorica'),
+  (00004567, 'Ana', 'Martinez', 'Expresion Creativa'),
+  (00008901, 'David', 'Torres', 'Violin'),
+  (00002345, 'Sofia', 'Vargas', 'Acordeon'),
+  (00006789, 'Gabriela', 'Jimenez', 'Banda de guerra'),
+  (00000123, 'Oscar', 'Gomez', 'Piano'),
+  (00009876, 'Miguel', 'Rios', 'Futbol'),
+  (00005432, 'Patricia', 'Silva', 'Basquetball'),
+  (00007891, 'Carlos', 'Herrera', 'Voleibol'),
+  (00004568, 'Luisa', 'Lopez', 'Atletismo'),
+  (00008902, 'Diego', 'Flores', 'Voleibol de playa'),
+  (00002346, 'Ana', 'Mendoza', 'Taekwondo'),
+  (00006790, 'Roberto', 'Jimenez', 'Ajedrez'),
+  (00000124, 'Olivia', 'Gomez', 'Robotica'),
+  (00009877, 'Fernando', 'Rios', 'Baseball'),
+  (00005433, 'Patricia', 'Hernandez', 'Gimnasia');
+
+-- Tabla Actividades_culturales
+INSERT INTO Actividades_culturales (id_actcultural, nombre_actividad, Descripcion, Lugar)
+VALUES
+  (01, 'Danza', 'Clases de baile', 'Salon de danza A'),
+  (02, 'Teatro', 'Ensayos de una obra de teatro', 'Al lado del gimnasio'),
+  (03, 'Guitarra', 'Taller de guitarra acustica', 'Aula B2'),
+  (04, 'Fotografia', 'Curso de fotografia digital', 'Auditorio de bachillerato'),
+  (05, 'Danza Folklorica', 'Clases de danza folklorica', 'Aula H4'),
+  (06, 'Expresion Creativa', 'Expresa tu creatividad en diferentes maneras', 'Aula E2'),
+  (07, 'Violin', 'Clases de violin', 'Aula B6'),
+  (08, 'Acordeon', 'Taller de acordeon', 'Aula A1'),
+  (09, 'Banda de guerra', 'Instrumentos de aire y tambor', 'Aula B1'),
+  (10, 'Expresion Creativa', 'Expresa tu creatividad en diferentes maneras', 'Aula E3');
+
+-- Tabla Actividades_deportivas
+INSERT INTO Actividades_deportivas (id_actdeportiva, Nombre_actividad, Descripcion, Lugar)
+VALUES
+  (01, 'Futbol', 'Entrenamiento de futbol', 'Campo de futbol'),
+  (02, 'Baloncesto', 'Partido emocionante de baloncesto', 'Cancha de baloncesto'),
+  (03, 'Voleibol', 'Entrenamiento dinámico de voleibol', 'Cancha de voleibol'),
+  (04, 'Gimnasia', 'Clases de gimnasia rítmica', 'Gimnasio principal'),
+  (05, 'Beisbol', 'Materia que se lleva a cabo fuera de la escuela con mucha oportunidad', 'Campo de beisbol'),
+  (06, 'Taekwondo', 'Clases de taekwondo', 'Aula de tapetes'),
+  (07, 'Robotica', 'Materia donde aprenderas a programar', 'Talleres de ingeniería'),
+  (08, 'Ajedrez', 'Aprendizaje de ajedrez desde cero o tu nivel', 'Aula B2'),
+  (09, 'Atletismo', 'Materia donde es tener fuerza y ganas de correr', 'Pista de atletismo'),
+  (10, 'Voleibol de playa', 'Entrenamiento de voleibol pero en cancha de voleibol', 'Cancha de voleibol de arena');
