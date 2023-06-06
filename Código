@@ -28,18 +28,27 @@ CREATE TABLE Actividades_deportivas (
   Descripcion VARCHAR(255) NOT NULL,
   Lugar VARCHAR(50) NOT NULL
 );
-
-CREATE TABLE Registro_actividades (
+-- ----crear dos tablas donde llame mis llaves foraneas de las dtablas de prof,alum y materia uwu 
+CREATE TABLE Registro_culturales (
   id_registro INT PRIMARY KEY NOT NULL,
   AlumnoID INT NOT NULL,
   ProfesorID INT NOT NULL,
-  ActividadID INT NOT NULL,
-  FechaRegistro DATE NOT NULL,
+  ActividadID_cult INT NOT NULL,
   FOREIGN KEY (AlumnoID) REFERENCES Alumnos(id_alumnos),
   FOREIGN KEY (ProfesorID) REFERENCES Profesores(id_profesores),
-  FOREIGN KEY (ActividadID) REFERENCES Actividades_culturales(id_actcultural),
-  FOREIGN KEY (ActividadID) REFERENCES Actividades_deportivas(id_actdeportiva)
+  FOREIGN KEY (ActividadID_cult) REFERENCES Actividades_culturales(id_actcultural)
 );
+
+CREATE TABLE Registro_deportes (
+  id_registrodep INT PRIMARY KEY NOT NULL,
+  AlumnoID INT NOT NULL,
+  ProfesorID INT NOT NULL,
+  ActividadID_depo INT NOT NULL,
+  FOREIGN KEY (AlumnoID) REFERENCES Alumnos(id_alumnos),
+  FOREIGN KEY (ProfesorID) REFERENCES Profesores(id_profesores),
+  FOREIGN KEY (ActividadID_depo) REFERENCES Actividades_deportivas(id_actdeportiva)
+);
+
 
 -- Tabla Alumnos
 INSERT INTO Alumnos (id_alumnos, Nombre, Apellido, Semestre)
